@@ -9,7 +9,15 @@ root.geometry("400x600")
 #functions
 def on_log_run():
     name = name_entry.get()
-    message = log_run(name)
+    date = date_entry.get()
+    distance = distance_entry.get()
+    time = time_entry.get()
+    goal = goal_entry.get()
+    goal_met = goal_met_entry.get()
+    mood = mood_entry.get()
+
+    # Call the logic function from main1.py
+    message = log_run(name, date, distance, time, goal, goal_met, mood)
     messagebox.showinfo("Run Logger", message)
 
 def on_calorie_calc():
@@ -26,7 +34,7 @@ main_frame.pack(fill=BOTH, expand=True)
 welcome_label = Label(main_frame, text="Welcome!")
 welcome_label.pack(pady=(0, 20))
 
-#name entry
+#Entry
 name_frame = Frame(main_frame)
 name_frame.pack(fill=X, pady=(0, 20))
 
@@ -35,6 +43,37 @@ name_label.pack(side=LEFT)
 
 name_entry = Entry(name_frame, relief=SOLID, bd=1)
 name_entry.pack(side=LEFT, fill=X, expand=True, padx=(10, 0))
+
+date_label = Label(main_frame, text="Date")
+date_label.pack()
+date_entry = Entry(main_frame)
+date_entry.pack(pady=5)
+
+distance_label = Label(main_frame, text="Distance (km)")
+distance_label.pack()
+distance_entry = Entry(main_frame)
+distance_entry.pack(pady=5)
+
+time_label = Label(main_frame, text="Time (minutes)")
+time_label.pack()
+time_entry = Entry(main_frame)
+time_entry.pack(pady=5)
+
+goal_label = Label(main_frame, text="Goal (km)")
+goal_label.pack()
+goal_entry = Entry(main_frame)
+goal_entry.pack(pady=5)
+
+goal_met_label = Label(main_frame, text="Goal Met (Yes/No)")
+goal_met_label.pack()
+goal_met_entry = Entry(main_frame)
+goal_met_entry.pack(pady=5)
+
+mood_label = Label(main_frame, text="Mood")
+mood_label.pack()
+mood_entry = Entry(main_frame)
+mood_entry.pack(pady=5)
+
 
 #buttons
 log_button = Button(main_frame, text="Log/ save new runs", height=2, relief=RIDGE, bd=2, bg="#4B4E6D", fg="white", command=on_log_run)

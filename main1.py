@@ -1,10 +1,24 @@
-def log_run(name):
-    if name:
-        print(f"{name}'s run has been logged.")
-        return f"Run logged for {name}"
-    else:
-        print("Name is empty. Please enter your name.")
+def log_run(name, date, distance, time, goal, goal_met, mood):
+    if not name:
         return "Please enter your name."
+
+    run_data = (
+        f"Name: {name}\n"
+        f"Date: {date}\n"
+        f"Distance: {distance} km\n"
+        f"Time: {time} minutes\n"
+        f"Goal: {goal} km\n"
+        f"Goal Met: {goal_met}\n"
+        f"Mood: {mood}\n"
+        "--------------------------\n"
+    )
+
+    try:
+        with open("Run_logs.txt", "a") as file:
+            file.write(run_data)
+        return "Run saved successfully!"
+    except:
+        return "Could not save the run."
 
 def calculate_calories(minutes, intensity="medium"):
     intensity_factors = {
@@ -24,3 +38,4 @@ def get_motivational_quote():
         "Your only limit is you."
     ]
     return random.choice(quotes)
+

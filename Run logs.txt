@@ -1,0 +1,16 @@
+Name: x
+Date: x
+Distance: x km
+Time: x minutes
+Goal: x km
+Goal Met: x
+Mood: x
+--------------------------
+Name: first test
+Date: 18/06/25
+Distance: 3 km
+Time: 3 minutes
+Goal: 3 km
+Goal Met: yes
+Mood: xxx
+--------------------------
