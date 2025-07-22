@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from main1 import *
 
 root = Tk()
-root.title("Tidetrace: Running App")
+root.title("Tracktrace: Running App")
 root.geometry("400x750")
 root.configure(bg="#34324A")
 
@@ -55,7 +55,7 @@ def on_get_quote():
 main_frame = Frame(root, bg="#34324A", padx=20, pady=20)
 main_frame.pack(fill=BOTH, expand=True)
 
-welcome_label = Label(main_frame, text="Welcome!\nName___", fg="#8DE6C2", bg="#34324A", font=("Helvetica", 16, "bold"))
+welcome_label = Label(main_frame, text="Welcome to TrackTrace!\nName___", fg="#8DE6C2", bg="#34324A", font=("Helvetica", 16, "bold"))
 welcome_label.pack(pady=(0, 20))
 
 #buttons

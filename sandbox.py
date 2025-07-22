@@ -1,26 +1,37 @@
-def log_run(name):
-    if name:
-        print(f"{name}'s run has been logged.")
-        return f"Run logged for {name}"
-    else:
-        print("Name is empty. Please enter your name.")
-        return "Please enter your name."
+import sqlite3
 
-def calculate_calories(minutes, intensity="medium"):
-    intensity_factors = {
-        "low": 5,
-        "medium": 10,
-        "high": 15
-    }
-    return minutes * intensity_factors.get(intensity, 10)
+# Connect to SQLite database (or create it if it doesn't exist)
+conn = sqlite3.connect('students.db')
 
-def get_motivational_quote():
-    import random
-    quotes = [
-        "Every step counts!",
-        "You’re stronger than you think.",
-        "Push yourself, because no one else will.",
-        "One run at a time.",
-        "Your only limit is you."
-    ]
-    return random.choice(quotes)
+# Create a cursor object to interact with the database
+cursor = conn.cursor()
+
+# Step 1: Create a table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        age INTEGER
+    )
+''')
+
+# Step 2: Insert a student
+cursor.execute("INSERT INTO students (name, age) VALUES (?, ?)", ("Alice", 21))
+cursor.execute("INSERT INTO students (name, age) VALUES (?, ?)", ("Bob", 23))
+
+
+
+
+# Step 3: Commit the changes
+conn.commit()
+
+# Step 4: Read and display all records
+cursor.execute("SELECT * FROM students")
+rows = cursor.fetchall()
+
+print("Student Records:")
+for row in rows:
+    print(row)
+
+# Step 5: Close the connection
+conn.close()
