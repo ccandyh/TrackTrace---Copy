@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk, messagebox
 from main1 import *
+from main2 import *
 
 root = Tk()
 root.title("Tracktrace: Running App")
@@ -52,6 +53,26 @@ def on_get_quote():
     quote = get_motivational_quote()
     messagebox.showinfo("Motivation", quote)
 
+def on_set_goal():
+    goal_win = Toplevel(root)
+    goal_win.title("Set Your Weekly Goal")
+    goal_win.geometry("300x200")
+    goal_win.configure(bg="#34324A")
+
+    Label(goal_win, text="Weekly Distance Goal (km)", fg="white", bg="#34324A").pack(pady=(10, 0))
+    goal_entry = Entry(goal_win)
+    goal_entry.pack(pady=5)
+
+    def save_goal():
+        distance = goal_entry.get()
+        from main2 import set_user_goal
+        message = set_user_goal(distance)
+        messagebox.showinfo("Goal Setter", message)
+        goal_win.destroy()
+
+    Button(goal_win, text="Save Goal", command=save_goal, bg="#8DE6C2", fg="#34324A", font=("Helvetica", 12), relief=FLAT).pack(pady=20)
+
+
 main_frame = Frame(root, bg="#34324A", padx=20, pady=20)
 main_frame.pack(fill=BOTH, expand=True)
 
@@ -67,9 +88,10 @@ features_frame = Frame(main_frame, bg="#34324A")
 features_frame.pack()
 
 Button(features_frame, text="Calorie Calculator", font=("Helvetica", 12), height=3, width=17, bg="#FFD3AC", relief=FLAT, command=on_calorie_calc).grid(row=0, column=0, padx=10, pady=10)
-Button(features_frame, text="Goal Setter", font=("Helvetica", 12), height=3, width=17, bg="#FFD3AC", relief=FLAT).grid(row=0, column=1, padx=10, pady=10)
+Button(features_frame, text="Goal Setter", font=("Helvetica", 12), height=3, width=17, bg="#FFD3AC", relief=FLAT, command=on_set_goal).grid(row=0, column=1, padx=10, pady=10)
 Button(features_frame, text="Motivational Quotes", font=("Helvetica", 12), height=3, width=17, bg="#FFD3AC", relief=FLAT, command=on_get_quote).grid(row=1, column=0, padx=10, pady=10)
 Button(features_frame, text="Blog", font=("Helvetica", 12), height=3, width=17, bg="#FFD3AC", relief=FLAT).grid(row=1, column=1, padx=10, pady=10)
+
 
 #bottom nav
 bottom_frame = Frame(root, bg="white")
@@ -82,4 +104,3 @@ Button(bottom_frame, text="START", font=("Helvetica", 10, "bold"), bg="#FFA15D",
 Button(bottom_frame, text="⚙️", font=("Helvetica", 10, "bold"), bg="#FFA15D", fg="white", relief=FLAT, padx=20, pady=10).pack(side=LEFT, expand=True)
 
 root.mainloop()
-

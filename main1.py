@@ -1,6 +1,6 @@
 import sqlite3
 
-db_path = "run_logs.db"
+db_path = "data/run_logs.db"
 
 def setup_database():
     conn = sqlite3.connect(db_path)
@@ -39,5 +39,3 @@ def log_run(name, date, distance, time, goal, goal_met, mood):
         return "Run saved to database successfully!"
     except Exception as e:
         return f"Could not save run: {e}"
-    
-    
