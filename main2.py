@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3 
 
 db_path = "data/run_logs.db"
 
